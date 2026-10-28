@@ -30,7 +30,7 @@ BarberBook обслуживает один барбер-шоп. Гость пр�
 | Итерация | Одна рабочая неделя с проверяемым результатом |
 | SDD / ADR | Описание дизайна / запись архитектурного решения |
 
-Нормативная основа: [SRS](../srs/srs.md), [шаблон SDD](sdd-template.md), [ADR-001](../adr/ADR-001-architecture.md), [ADR-002](../adr/ADR-002-slot-integrity.md), [ADR-003](../adr/ADR-003-schedule.md).
+Нормативная основа: [SRS](../srs/srs.md), [ADR-001](../adr/ADR-001-architecture.md), [ADR-002](../adr/ADR-002-slot-integrity.md), [ADR-003](../adr/ADR-003-schedule.md). Документ составлен по шаблону SDD из ветки `main`.
 
 ### 1.4 Ссылки
 
