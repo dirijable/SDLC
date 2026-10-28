@@ -1,8 +1,7 @@
 ---
-status: proposed
+status: accepted
 date: 2026-10-27
-decision-makers: Архитектор учебного проекта
-consulted: Заказчик в учебном сценарии ЛР4
+decision-makers: Архитектор проекта
 ---
 
 # ADR-003: Явное расписание по датам и напоминание в панели
@@ -48,4 +47,4 @@ consulted: Заказчик в учебном сценарии ЛР4
 
 ## Дополнительная информация
 
-См. [SDD](../sdd/BarberBook-sdd.md) и [SRS](../srs/srs.md). Статус `proposed` до фактического согласования.
+Связанные документы: [SDD](../sdd/BarberBook-sdd.md) и [SRS](../srs/srs.md).
