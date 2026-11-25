@@ -1,0 +1,51 @@
+@startuml
+skinparam monochrome true
+hide footbox
+autonumber
+actor "Клиент" as L0
+boundary "Браузер" as L1
+control "BookingController" as L2
+participant "BookingService" as L3
+participant "ScheduleService" as L4
+participant "BookingRepository" as L5
+database "PostgreSQL" as L6
+L0 -> L1 : Подтвердить время
+L1 -> L2 : POST /bookings
+L2 -> L2 : Проверить сессию и поля
+L2 -> L3 : book(параметры слота)
+L3 -> L6 : BEGIN, SELECT WorkDay FOR UPDATE
+L6 --> L3 : Рабочий день
+L3 -> L4 : checkAvailable(слот)
+L4 -> L6 : SELECT SlotBlock, Booking
+L6 --> L4 : Слот свободен
+L4 --> L3 : Доступен
+L3 -> L5 : save(Booking: UPCOMING)
+L5 -> L6 : INSERT Booking
+L6 --> L5 : Идентификатор записи
+L5 --> L3 : Запись
+L3 -> L6 : COMMIT
+L3 --> L2 : BookingDto
+L2 --> L1 : 201 Created
+L1 --> L0 : Подтверждение записи
+== Повторная попытка: час уже недоступен ==
+L0 -> L1 : Повторить запрос записи
+L1 -> L2 : POST /bookings
+L2 -> L3 : book(параметры слота)
+L3 -> L6 : BEGIN, SELECT WorkDay FOR UPDATE
+L6 --> L3 : Рабочий день
+L3 -> L4 : checkAvailable(слот)
+L4 -> L6 : SELECT SlotBlock, Booking
+L6 --> L4 : Есть запись или блокировка
+L4 --> L3 : Недоступен
+L3 -> L6 : ROLLBACK
+L3 --> L2 : SlotUnavailable
+L2 --> L1 : 409 Conflict
+L1 --> L0 : Предложить другой час
+destroy L0
+destroy L1
+destroy L2
+destroy L3
+destroy L4
+destroy L5
+destroy L6
+@enduml

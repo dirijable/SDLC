@@ -1,0 +1,59 @@
+@startuml
+skinparam linetype ortho
+left to right direction
+skinparam monochrome true
+actor "Гость" as Guest
+actor "Клиент" as Client
+actor "Администратор" as Admin
+rectangle "BarberBook" {
+ usecase "UC-01 Просмотреть каталог" as U1
+ usecase "UC-02 Зарегистрироваться и войти" as U2
+ usecase "UC-03 Выбрать услугу и мастера" as U3
+ usecase "UC-04 Просмотреть свободные слоты" as U4
+ usecase "UC-05 Забронировать слот" as U5
+ usecase "UC-06 Проверить доступность" as U6
+ usecase "UC-07 Просмотреть свои записи" as U7
+ usecase "UC-08 Отменить запись" as U8
+ usecase "UC-09 Управлять каталогом" as U9
+ usecase "UC-10 Управлять расписанием" as U10
+ usecase "UC-11 Просмотреть и отменить все записи" as U11
+ usecase "UC-12 Блокировать свободный слот" as U12
+ usecase "UC-13 Проверить полноту расписания" as U13
+ usecase "UC-14 Добавить мастера" as U14
+ usecase "UC-15 Изменить мастера" as U15
+ usecase "UC-16 Удалить мастера" as U16
+ usecase "UC-17 Добавить услугу" as U17
+ usecase "UC-18 Изменить услугу" as U18
+ usecase "UC-19 Удалить услугу" as U19
+ usecase "UC-20 Снять блокировку слота" as U20
+ usecase "UC-21 Выйти из системы" as U21
+}
+Guest --> U1
+Guest --> U2
+Guest --> U3
+Guest --> U4
+Client --> U1
+Client --> U3
+Client --> U4
+Client --> U5
+Client --> U7
+Client --> U8
+Admin --> U9
+Admin --> U10
+Admin --> U11
+Admin --> U12
+Admin --> U13
+Admin --> U20
+Client --> U21
+Admin --> U21
+U5 ..> U6 : <<include>>
+U12 ..> U6 : <<include>>
+U8 ..> U7 : <<extend>>
+U13 ..> U10 : <<extend>>
+U14 ..> U9 : <<extend>>
+U15 ..> U9 : <<extend>>
+U16 ..> U9 : <<extend>>
+U17 ..> U9 : <<extend>>
+U18 ..> U9 : <<extend>>
+U19 ..> U9 : <<extend>>
+@enduml

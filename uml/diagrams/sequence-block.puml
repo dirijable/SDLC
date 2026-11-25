@@ -1,0 +1,35 @@
+@startuml
+skinparam monochrome true
+autonumber
+title UC-12 Блокировать свободный слот
+actor Администратор as A
+boundary Панель as UI
+control ScheduleController as SC
+control ScheduleService as SS
+database PostgreSQL as DB
+A -> UI : Выбрать час, указать причину
+UI -> SC : POST /admin/slot-blocks
+activate SC
+SC -> SC : Проверить роль и ввод
+SC -> SS : block(master, date, hour, reason)
+activate SS
+SS -> DB : BEGIN; lock WorkDay
+activate DB
+DB --> SS : день
+deactivate DB
+SS -> DB : SELECT Booking, SlotBlock
+DB --> SS : состояние слота
+alt час свободен и рабочий
+ SS -> DB : INSERT SlotBlock; COMMIT
+ DB --> SS : блок
+ SS --> SC : BlockDto
+ SC --> UI : 201, блокировка создана
+else есть запись или час недоступен
+ SS -> DB : ROLLBACK
+ SS --> SC : Conflict
+ SC --> UI : 409, объяснение
+end
+deactivate SS
+deactivate SC
+UI --> A : Показать результат
+@enduml

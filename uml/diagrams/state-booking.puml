@@ -1,0 +1,13 @@
+@startuml
+skinparam linetype ortho
+skinparam monochrome true
+title Жизненный цикл записи Booking
+[*] --> UPCOMING : book() [час свободен]
+state UPCOMING : entry / час занят
+UPCOMING --> CANCELLED : cancel() [до начала] / освободить час
+UPCOMING --> COMPLETED : when(now >= endsAt)
+state CANCELLED : entry / запись остаётся в истории
+state COMPLETED : entry / запись остаётся в истории
+CANCELLED --> [*]
+COMPLETED --> [*]
+@enduml
