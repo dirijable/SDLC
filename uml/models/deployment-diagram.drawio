@@ -1,0 +1,100 @@
+<mxfile host="app.diagrams.net">
+    <diagram id="d" name="Диаграмма развёртывания BarberBook">
+        <mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1" math="0" shadow="0" pageWidth="1690" pageHeight="830">
+            <root>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+                <mxCell id="s1" parent="1" vertex="1" value="«device»&lt;br&gt;&lt;b&gt;Устройство пользователя&lt;/b&gt;" style="shape=cube;size=10;direction=south;darkOpacity=0;darkOpacity2=0;verticalAlign=top;align=left;spacingTop=6;spacingLeft=6;spacingRight=14;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="37.0" y="145.0" width="258.0" height="172.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s2" parent="1" vertex="1" value="«executionEnvironment»&lt;br&gt;&lt;b&gt;Веб-браузер&lt;/b&gt;" style="shape=cube;size=10;direction=south;darkOpacity=0;darkOpacity2=0;verticalAlign=top;align=left;spacingTop=6;spacingLeft=6;spacingRight=14;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="57.0" y="208.0" width="218.0" height="81.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s3" parent="1" vertex="1" value="«device»&lt;br&gt;&lt;b&gt;Сервер приложения&lt;/b&gt;" style="shape=cube;size=10;direction=south;darkOpacity=0;darkOpacity2=0;verticalAlign=top;align=left;spacingTop=6;spacingLeft=6;spacingRight=14;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="434.0" y="42.0" width="746.0" height="582.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s4" parent="1" vertex="1" value="«executionEnvironment»&lt;br&gt;&lt;b&gt;Java 21 / Spring Boot&lt;/b&gt;" style="shape=cube;size=10;direction=south;darkOpacity=0;darkOpacity2=0;verticalAlign=top;align=left;spacingTop=6;spacingLeft=6;spacingRight=14;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="465.0" y="101.0" width="684.0" height="455.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s5" parent="1" vertex="1" value="«artifact» &lt;b&gt;barberbook.jar&lt;/b&gt;" style="html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;verticalAlign=top;spacingTop=6;">
+                    <mxGeometry x="501.0" y="170.0" width="612.0" height="351.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s6" parent="1" vertex="1" value="" style="shape=note;size=5;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1093.0" y="175.0" width="12.0" height="15.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s7" parent="1" vertex="1" value="" style="shape=folder;tabWidth=126;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="525.0" y="226.0" width="564.0" height="129.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s8" parent="1" vertex="1" value="«folder» &lt;b&gt;BOOT-INF/classes&lt;/b&gt;" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=9.5;fontColor=#000000;align=left;">
+                    <mxGeometry x="531.0" y="228.0" width="564.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s9" parent="1" vertex="1" value="«artifact»&lt;br&gt;&lt;b&gt;Классы приложения&lt;/b&gt;" style="html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="544.0" y="270.0" width="237.0" height="54.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s10" parent="1" vertex="1" value="" style="shape=note;size=5;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="761.0" y="275.0" width="12.0" height="15.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s11" parent="1" vertex="1" value="«artifact»&lt;br&gt;&lt;b&gt;Шаблоны HTML&lt;/b&gt;" style="html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="820.0" y="270.0" width="247.0" height="54.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s12" parent="1" vertex="1" value="" style="shape=note;size=5;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1047.0" y="275.0" width="12.0" height="15.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s13" parent="1" vertex="1" value="" style="shape=folder;tabWidth=102;tabHeight=18;tabPosition=left;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="525.0" y="370.0" width="564.0" height="126.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s14" parent="1" vertex="1" value="«folder» &lt;b&gt;BOOT-INF/lib&lt;/b&gt;" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=9.5;fontColor=#000000;align=left;">
+                    <mxGeometry x="531.0" y="372.0" width="564.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s15" parent="1" vertex="1" value="«library»&lt;br&gt;&lt;b&gt;Spring Boot&lt;/b&gt;" style="html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="544.0" y="415.0" width="237.0" height="54.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s16" parent="1" vertex="1" value="" style="shape=note;size=5;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="761.0" y="420.0" width="12.0" height="15.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s17" parent="1" vertex="1" value="«library»&lt;br&gt;&lt;b&gt;Драйвер PostgreSQL JDBC&lt;/b&gt;" style="html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="820.0" y="415.0" width="247.0" height="54.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s18" parent="1" vertex="1" value="" style="shape=note;size=5;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1047.0" y="420.0" width="12.0" height="15.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s19" parent="1" vertex="1" value="«device»&lt;br&gt;&lt;b&gt;Сервер базы данных&lt;/b&gt;" style="shape=cube;size=10;direction=south;darkOpacity=0;darkOpacity2=0;verticalAlign=top;align=left;spacingTop=6;spacingLeft=6;spacingRight=14;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1331.0" y="145.0" width="314.0" height="240.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s20" parent="1" vertex="1" value="«executionEnvironment»&lt;br&gt;&lt;b&gt;PostgreSQL&lt;/b&gt;" style="shape=cube;size=10;direction=south;darkOpacity=0;darkOpacity2=0;verticalAlign=top;align=left;spacingTop=6;spacingLeft=6;spacingRight=14;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1357.0" y="204.0" width="262.0" height="147.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s21" parent="1" vertex="1" value="«artifact»&lt;br&gt;&lt;b&gt;Схема базы barberbook&lt;/b&gt;" style="html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1380.0" y="274.0" width="218.0" height="51.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s22" parent="1" vertex="1" value="" style="shape=note;size=5;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1578.0" y="279.0" width="12.0" height="15.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s23" parent="1" vertex="1" value="«subsystem»&lt;br&gt;&lt;b&gt;BarberBook&lt;/b&gt;" style="html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="696.0" y="700.0" width="235.0" height="74.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s24" parent="1" vertex="1" value="" style="shape=module;jettyWidth=6;jettyHeight=3;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="907.0" y="706.0" width="16.0" height="16.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s25" parent="1" edge="1" value="HTTPS" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=none;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="295.0" y="248.0" as="sourcePoint" />
+                        <mxPoint x="434.0" y="248.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s26" parent="1" edge="1" value="JDBC" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=none;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1180.0" y="248.0" as="sourcePoint" />
+                        <mxPoint x="1331.0" y="248.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s27" parent="1" edge="1" value="«manifest»" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="807.0" y="521.0" as="sourcePoint" />
+                        <mxPoint x="807.0" y="700.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -1,0 +1,51 @@
+@startuml component-diagram
+skinparam monochrome true
+skinparam linetype ortho
+skinparam componentStyle uml2
+component "BarberBook" as BB <<subsystem>> {
+  portin HTTPS
+  portout JDBC
+  component Web
+  component Auth
+  component Catalog
+  component Booking
+  component Schedule
+  component Reminder
+  component Persistence
+  interface "AuthApi" as AuthApi
+  interface "CatalogApi" as CatalogApi
+  interface "BookingApi" as BookingApi
+  interface "ScheduleApi" as ScheduleApi
+  interface "ReminderApi" as ReminderApi
+  interface "UserRepository" as UserRepository
+  interface "CatalogRepository" as CatalogRepository
+  interface "BookingRepository" as BookingRepository
+  interface "CalendarRepository" as CalendarRepository
+}
+database PostgreSQL
+HTTPS -- Web : delegate
+Web ..> AuthApi
+Auth - AuthApi
+Web ..> CatalogApi
+Catalog - CatalogApi
+Web ..> BookingApi
+Booking - BookingApi
+Web ..> ScheduleApi
+Booking ..> ScheduleApi
+Schedule - ScheduleApi
+Web ..> ReminderApi
+Reminder - ReminderApi
+Reminder ..> ScheduleApi
+Auth ..> UserRepository
+Catalog ..> CatalogRepository
+Booking ..> BookingRepository
+Schedule ..> CalendarRepository
+Schedule ..> BookingRepository
+Reminder ..> CalendarRepository
+Persistence - UserRepository
+Persistence - CatalogRepository
+Persistence - BookingRepository
+Persistence - CalendarRepository
+Persistence -- JDBC
+JDBC -- PostgreSQL
+@enduml

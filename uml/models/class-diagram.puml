@@ -1,0 +1,134 @@
+@startuml class-diagram
+skinparam monochrome true
+skinparam linetype ortho
+skinparam classAttributeIconSize 0
+hide circle
+
+class "auth::User" as User {
+- id: Long
+- email: String {unique}
+- passwordHash: String
+- role: UserRole
++ hasRole(role: UserRole): boolean
+}
+
+class "booking::Booking" as Booking {
+- id: Long
+- date: LocalDate
+- hour: int
+- status: BookingStatus
+- createdAt: Instant
++ cancel(now: Instant): void
++ complete(now: Instant): void
+}
+
+class "booking::BookingService" as BookingService {
+- bookings: BookingRepository
+- schedule: ScheduleService
++ book(client: User, master: Master, service: Service, date: LocalDate, hour: int): Booking
++ cancel(id: Long, actor: User): Booking
+}
+
+interface "persistence::BookingRepository" as BookingRepository {
++ findById(id: Long): Booking [0..1]
++ save(booking: Booking): Booking
++ existsUpcoming(masterId: Long, date: LocalDate, hour: int): boolean
+}
+
+enum "auth::UserRole" as UserRole {
+CLIENT
+ADMIN
+}
+
+enum "booking::BookingStatus" as BookingStatus {
+UPCOMING
+CANCELLED
+COMPLETED
+}
+
+class "web::BookingController" as BookingController {
+- bookings: BookingService
++ create(form: BookingForm): Response
++ cancel(id: Long): Response
+}
+
+class "schedule::ScheduleService" as ScheduleService {
+- calendar: CalendarRepository
+- bookings: BookingRepository
++ checkAvailable(slot: SlotKey): boolean
++ block(slot: SlotKey, reason: String, actor: User): SlotBlock
++ unblock(id: Long): void
+}
+
+class "catalog::Master" as Master {
+- id: Long
+- name: String
+- active: boolean
++ isActive(): boolean
+}
+
+class "catalog::MasterService" as MasterService {
+- masterId: Long {id}
+- serviceId: Long {id}
+}
+
+class "catalog::Service" as Service {
+- id: Long
+- name: String
+- price: BigDecimal
+- durationMinutes: int = 60 {readOnly}
++ changePrice(price: BigDecimal): void
+}
+
+interface "persistence::CalendarRepository" as CalendarRepository {
++ lockDay(masterId: Long, date: LocalDate): WorkDay [0..1]
++ findBlocks(date: LocalDate): SlotBlock [*]
++ saveBlock(block: SlotBlock): SlotBlock
+}
+
+class "schedule::WorkDay" as WorkDay {
+- masterId: Long {id}
+- date: LocalDate {id}
+- isDayOff: boolean
+- startHour: int [0..1]
+- endHour: int [0..1]
++ includes(hour: int): boolean
+}
+
+class "schedule::SlotBlock" as SlotBlock {
+- masterId: Long {id}
+- date: LocalDate {id}
+- hour: int {id}
+- reason: String
+- createdBy: User
++ matches(slot: SlotKey): boolean
+}
+
+class "catalog::CatalogService" as CatalogService {
++ listForService(id: Long): Master [*]
++ activeMasters(): Master [*]
+}
+
+class "schedule::ReminderService" as ReminderService {
++ dueOn(month: YearMonth): LocalDate
++ incompleteMasters(month: YearMonth): Master [*]
+}
+
+Booking "0..*" --> "1" User : клиент
+Booking "0..*" --> "1" Master
+Booking "0..*" --> "1" Service
+User ..> UserRole
+Booking ..> BookingStatus
+Master "1" -- "0..*" MasterService
+MasterService "0..*" -- "1" Service
+Master "1" *-- "0..*" WorkDay
+WorkDay "1" -- "0..*" SlotBlock
+BookingController ..> BookingService
+BookingService ..> Booking : create
+BookingService ..> BookingRepository
+BookingService ..> ScheduleService
+ScheduleService ..> BookingRepository
+ScheduleService ..> CalendarRepository
+CatalogService ..> Service
+ReminderService ..> CalendarRepository
+@enduml

@@ -1,0 +1,205 @@
+<mxfile host="app.diagrams.net">
+    <diagram id="d" name="Диаграмма классов BarberBook">
+        <mxGraphModel dx="1400" dy="900" grid="0" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1" math="0" shadow="0" pageWidth="1654" pageHeight="1170">
+            <root>
+                <mxCell id="0" />
+                <mxCell id="1" parent="0" />
+                <mxCell id="s1" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;auth::User&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- id: Long&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- email: String {unique}&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- passwordHash: String&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- role: UserRole&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ hasRole(role: UserRole): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="94.0" y="102.0" width="315.0" height="105.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s2" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;booking::Booking&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- id: Long&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- date: LocalDate&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- hour: int&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- status: BookingStatus&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- createdAt: Instant&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ cancel(now: Instant): void&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ complete(now: Instant): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="468.0" y="102.0" width="315.0" height="131.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s3" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;booking::BookingService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- bookings: BookingRepository&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- schedule: ScheduleService&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ book(client: User, master: Master,&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;    service: Service, date: LocalDate, hour: int): Booking&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ cancel(id: Long, actor: User): Booking&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="842.0" y="102.0" width="315.0" height="105.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s4" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;«interface»&lt;br&gt;&lt;b&gt;persistence::BookingRepository&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ findById(id: Long): Booking [0..1]&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ save(booking: Booking): Booking&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ existsUpcoming(masterId: Long, date: LocalDate,&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;    hour: int): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1216.0" y="102.0" width="315.0" height="104.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s5" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;«enumeration»&lt;br&gt;&lt;b&gt;auth::UserRole&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;CLIENT&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;ADMIN&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="94.0" y="334.0" width="315.0" height="70.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s6" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;«enumeration»&lt;br&gt;&lt;b&gt;booking::BookingStatus&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;UPCOMING&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;CANCELLED&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;COMPLETED&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="468.0" y="334.0" width="315.0" height="83.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s7" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;web::BookingController&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- bookings: BookingService&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ create(form: BookingForm): Response&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ cancel(id: Long): Response&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="842.0" y="334.0" width="315.0" height="79.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s8" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;schedule::ScheduleService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- calendar: CalendarRepository&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- bookings: BookingRepository&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ checkAvailable(slot: SlotKey): boolean&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ block(slot: SlotKey, reason: String, actor: User): SlotBlock&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ unblock(id: Long): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1216.0" y="334.0" width="315.0" height="105.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s9" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;catalog::Master&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- id: Long&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- active: boolean&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ isActive(): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="94.0" y="555.0" width="315.0" height="92.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s10" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;catalog::MasterService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- masterId: Long {id}&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- serviceId: Long {id}&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="468.0" y="555.0" width="315.0" height="58.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s11" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;catalog::Service&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- id: Long&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- name: String&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- price: BigDecimal&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- durationMinutes: int = 60 {readOnly}&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ changePrice(price: BigDecimal): void&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="842.0" y="555.0" width="315.0" height="105.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s12" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;«interface»&lt;br&gt;&lt;b&gt;persistence::CalendarRepository&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ lockDay(masterId: Long, date: LocalDate): WorkDay [0..1]&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ findBlocks(date: LocalDate): SlotBlock [*]&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ saveBlock(block: SlotBlock): SlotBlock&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1216.0" y="555.0" width="315.0" height="91.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s13" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;schedule::WorkDay&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- masterId: Long {id}&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- date: LocalDate {id}&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- isDayOff: boolean&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- startHour: int [0..1]&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- endHour: int [0..1]&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ includes(hour: int): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="94.0" y="785.0" width="315.0" height="118.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s14" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;schedule::SlotBlock&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- masterId: Long {id}&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- date: LocalDate {id}&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- hour: int {id}&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- reason: String&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;- createdBy: User&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ matches(slot: SlotKey): boolean&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="468.0" y="785.0" width="315.0" height="118.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s15" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;catalog::CatalogService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ listForService(id: Long): Master [*]&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ activeMasters(): Master [*]&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="842.0" y="785.0" width="315.0" height="66.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s16" parent="1" vertex="1" value="&lt;p style=&quot;margin:0;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;schedule::ReminderService&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;hr size=&quot;1&quot; style=&quot;border-style:solid;&quot;/&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ dueOn(month: YearMonth): LocalDate&lt;/p&gt;&lt;p style=&quot;margin:0;margin-left:4px;&quot;&gt;+ incompleteMasters(month: YearMonth): Master [*]&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="1216.0" y="785.0" width="315.0" height="66.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s17" parent="1" edge="1" value="клиент 1" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="468.0" y="143.0" as="sourcePoint" />
+                        <mxPoint x="409.0" y="143.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s18" parent="1" vertex="1" value="*" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=10;fontColor=#000000;align=center;">
+                    <mxGeometry x="449.0" y="125.0" width="18.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s19" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="250.0" y="207.0" as="sourcePoint" />
+                        <mxPoint x="250.0" y="334.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s20" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="625.0" y="233.0" as="sourcePoint" />
+                        <mxPoint x="625.0" y="334.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s21" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="842.0" y="158.0" as="sourcePoint" />
+                        <mxPoint x="783.0" y="158.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s22" parent="1" vertex="1" value="«create»" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=9;fontColor=#000000;align=center;">
+                    <mxGeometry x="778.0" y="136.0" width="64.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s23" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1157.0" y="146.0" as="sourcePoint" />
+                        <mxPoint x="1216.0" y="146.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s25" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1000.0" y="334.0" as="sourcePoint" />
+                        <mxPoint x="1000.0" y="207.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s26" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1157.0" y="190.0" as="sourcePoint" />
+                        <mxPoint x="1216.0" y="369.0" as="targetPoint" />
+                        <Array as="points">
+                            <mxPoint x="1186.0" y="190.0" />
+                            <mxPoint x="1186.0" y="369.0" />
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s27" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1375.0" y="334.0" as="sourcePoint" />
+                        <mxPoint x="1375.0" y="206.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s28" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1375.0" y="439.0" as="sourcePoint" />
+                        <mxPoint x="1375.0" y="555.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s29" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1489.0" y="785.0" as="sourcePoint" />
+                        <mxPoint x="1489.0" y="646.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s30" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="468.0" y="196.0" as="sourcePoint" />
+                        <mxPoint x="272.0" y="555.0" as="targetPoint" />
+                        <Array as="points">
+                            <mxPoint x="434.0" y="196.0" />
+                            <mxPoint x="434.0" y="489.0" />
+                            <mxPoint x="272.0" y="489.0" />
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s31" parent="1" vertex="1" value="мастер 1" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=10;fontColor=#000000;align=center;">
+                    <mxGeometry x="257.5" y="471.0" width="85.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s32" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="735.0" y="233.0" as="sourcePoint" />
+                        <mxPoint x="900.0" y="555.0" as="targetPoint" />
+                        <Array as="points">
+                            <mxPoint x="735.0" y="279.0" />
+                            <mxPoint x="809.0" y="279.0" />
+                            <mxPoint x="809.0" y="490.0" />
+                            <mxPoint x="900.0" y="490.0" />
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s33" parent="1" vertex="1" value="услуга 1" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=10;fontColor=#000000;align=center;">
+                    <mxGeometry x="887.5" y="472.0" width="75.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s34" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=none;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="409.0" y="595.0" as="sourcePoint" />
+                        <mxPoint x="468.0" y="595.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s35" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=none;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="783.0" y="595.0" as="sourcePoint" />
+                        <mxPoint x="842.0" y="595.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s36" parent="1" vertex="1" value="1     *" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=10;fontColor=#000000;align=center;">
+                    <mxGeometry x="411.5" y="574.0" width="55.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s37" parent="1" vertex="1" value="*     1" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=10;fontColor=#000000;align=center;">
+                    <mxGeometry x="784.5" y="574.0" width="55.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s38" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=none;startArrow=diamondThin;startFill=1;startSize=14;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="249.0" y="647.0" as="sourcePoint" />
+                        <mxPoint x="249.0" y="785.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s39" parent="1" vertex="1" value="1 / 0..*" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=10;fontColor=#000000;align=center;">
+                    <mxGeometry x="246.5" y="703.0" width="65.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s40" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=none;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="409.0" y="838.0" as="sourcePoint" />
+                        <mxPoint x="468.0" y="838.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s41" parent="1" vertex="1" value="1 / 0..*" style="text;html=1;whiteSpace=nowrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontSize=9;fontColor=#000000;align=center;">
+                    <mxGeometry x="403.0" y="818.0" width="60.0" height="14.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s42" parent="1" edge="1" value="" style="html=1;rounded=0;edgeStyle=none;strokeColor=#000000;strokeWidth=1.1;fontFamily=Arial;fontSize=10;fontColor=#000000;labelBackgroundColor=#FFFFFF;endArrow=open;endSize=8;dashed=1;dashPattern=6 4;">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1001.0" y="785.0" as="sourcePoint" />
+                        <mxPoint x="1001.0" y="660.0" as="targetPoint" />
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="s43" parent="1" vertex="1" value="&lt;b&gt;Обозначения&lt;/b&gt;&lt;br&gt;+ открытый член, − закрытый член, [0..1] необязательное значение&lt;br&gt;* — много, ◆ — композиция, пунктирная стрелка — зависимость" style="shape=note;size=9;align=left;verticalAlign=middle;spacingLeft=8;html=1;whiteSpace=wrap;rounded=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;fontFamily=Arial;fontSize=10;fontColor=#000000;">
+                    <mxGeometry x="94.0" y="1035.0" width="520.0" height="61.0" as="geometry" />
+                </mxCell>
+                <mxCell id="s44" parent="1" vertex="1" value="SlotKey = (masterId, date, hour). BookingForm — данные формы записи." style="text;html=1;whiteSpace=wrap;verticalAlign=middle;spacing=0;fontFamily=Arial;fontStyle=2;fontSize=11;fontColor=#000000;align=center;">
+                    <mxGeometry x="680.0" y="1035.0" width="760.0" height="61.0" as="geometry" />
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

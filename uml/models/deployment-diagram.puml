@@ -1,0 +1,30 @@
+@startuml deployment-diagram
+skinparam monochrome true
+skinparam linetype ortho
+node "Устройство пользователя" as Client <<device>> {
+  node "Веб-браузер" as Browser <<executionEnvironment>>
+}
+node "Сервер приложения" as App <<device>> {
+  node "Java 21 / Spring Boot" as JVM <<executionEnvironment>> {
+    artifact "barberbook.jar" as Jar {
+      folder "BOOT-INF/classes" {
+        artifact "Классы приложения"
+        artifact "Шаблоны HTML"
+      }
+      folder "BOOT-INF/lib" {
+        artifact "Spring Boot"
+        artifact "Драйвер PostgreSQL JDBC"
+      }
+    }
+  }
+}
+node "Сервер базы данных" as Db <<device>> {
+  node "PostgreSQL" as Pg <<executionEnvironment>> {
+    artifact "Схема базы barberbook"
+  }
+}
+component "BarberBook" as BB <<subsystem>>
+Client -- App : HTTPS
+App -- Db : JDBC
+Jar ..> BB : <<manifest>>
+@enduml
